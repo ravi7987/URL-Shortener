@@ -1,6 +1,6 @@
-import Mongoose from "mongoose";
-import { DataBase } from "../EnumsAndConstants/Configuration";
-import Config from "./ConfigLoader";
+import Mongoose from 'mongoose';
+import { DataBase } from '../EnumsAndConstants/Configuration';
+import Config from './ConfigLoader';
 
 /*
  *  Class ConnectDataBase is used to define properties and methods for connection with database nodejs driver
@@ -12,14 +12,12 @@ class ConnectDataBase {
 		try {
 			const database = Config.env.dataBase;
 			if (!!!database || database.trim().length === 0) {
+				console.error('no database param ', database);
 				throw new Error();
 			}
 
 			switch (database) {
 				case DataBase.MONGODB: {
-					console.log("in here");
-					console.log("url ",Config.env.databaseURL);
-					
 					const connection = await Mongoose.connect(Config.env.databaseURL, {
 						dbName: Config.env.databaseName,
 						autoIndex: false,
@@ -29,15 +27,15 @@ class ConnectDataBase {
 						// pass: ''
 					});
 
-					Mongoose.set("strictQuery", false);
+					Mongoose.set('strictQuery', false);
 
 					/* If connection drops */
-					connection.connection.on("disconnected", (error) => {
+					connection.connection.on('disconnected', (error) => {
 						throw new Error(error);
 					});
 
 					/* If connection drops due to an error */
-					connection.connection.on("error", (error) => {
+					connection.connection.on('error', (error) => {
 						throw new Error(error);
 					});
 
