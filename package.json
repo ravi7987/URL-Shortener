@@ -10,9 +10,12 @@
 	"author": "Ravinder",
 	"license": "ISC",
 	"dependencies": {
+		"@redis/graph": "^1.1.1",
+		"base62": "^2.0.2",
 		"cors": "^2.8.5",
-		"dotenv": "^16.4.5",
+		"dotenv": "^16.5.0",
 		"express": "^4.19.2",
+		"generate-unique-id": "^2.0.3",
 		"http-status-codes": "^2.3.0",
 		"joi": "^17.13.0",
 		"mongoose": "^8.3.3",
